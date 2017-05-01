@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  .container
+    if error
+      .alert.alert-danger
+        strong Error
+        |= error
+    h1= title
+    form.col-lg-6#runs-form(method="POST", action="create-run")
+      .form-group.row.name
+        label.col-sm-3 Name
+        .col-sm-3
+          input.form-control#first-name(type='text', name='firstName')
+        .col-sm-3
+          input.form-control#last-name(type='text', name='lastName')
+      
+      .form-group.row.category
+        label.col-sm-3  Kategorie
+        .col-sm-6
+          select.form-control#category(name='category')
+            options
+              option(value="1") Piccolo (3-6)
+              option(value="2") Mezzo (7-8)
+              option(value="3") Grande (9-10)
+      hr
+      .form-group.row.stage
+        label.col-sm-3  Posten 1
+        .col-sm-3
+          input.form-control#stage-1-run-1(type='number', name='stage1-run-1')
+        .col-sm-3
+          input.form-control#stage-1-run-2(type='number', name='stage1-run-2')
+      
+      .form-group.row.stage
+        label.col-sm-3  Posten 2
+        .col-sm-3
+          input.form-control#stage-2-run-1(type='number', name='stage2-run-1')
+        .col-sm-3
+          input.form-control#stage-2-run-2(type='number', name='stage2-run-2')
+
+      .form-group.row
+        .col-lg-12
+          a.btn.btn-secondary.float-left(href="/") Cancel
+          button.btn.btn-primary.float-right(type="submit") Speichern
