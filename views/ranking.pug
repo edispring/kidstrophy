@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  .container
+    if error
+      .alert.alert-danger
+        strong Error
+        span &nbsp;&nbsp;
+        span= error
+
+    .row
+      h2= title
+
+    .container
+      if resultsPerCategory
+        each category in categories
+          if parseInt(category, 10) >= 0
+            h2= categories[category]
+            table.table
+              tr
+                th Rank
+                th Name
+                th 1. Surfboard
+                th 2. Bowling
+                th 3. Parcours
+                th 4. Weitwurf
+                th 5. Sprint
+                th 6. Korbball
+                th Points Overall
+              if resultsPerCategory[+category]
+                each rank, i in resultsPerCategory[+category]
+                  tr
+                    td= (i + 1)
+                    td
+                      a(href='/' +rank.id)= rank.firstName + ' ' + rank.lastName
+                    td= rank.points1
+                      | &nbsp;
+                      strong= rank.stage1
+                    td= rank.points2
+                      | &nbsp;
+                      strong= rank.stage2
+                    td= rank.points3
+                      | &nbsp;
+                      strong= rank.stage3
+                    td= rank.points4
+                      | &nbsp;  
+                      strong= rank.stage4
+                    td= rank.points5
+                      | &nbsp;  
+                      strong= rank.stage5
+                    td= rank.points6
+                      | &nbsp;  
+                      strong= rank.stage6
+                    td= rank.points
+
