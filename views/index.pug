@@ -38,6 +38,11 @@ block content
                   if parseInt(cat, 10) >= 0
                     option(value=cat, selected=(kid.category === cat))= categories[cat]
         hr
+        .form-group.row
+          .offset-md-4.col-sm-4.col-xs-4
+            h4 1. Lauf
+          .col-sm-4.col-xs-4
+            h4 2. Lauf
         .form-group.row.stage
           label.col-sm-4  1. Surfboard (min/sec)
           +time(kid.runs,'stage1')

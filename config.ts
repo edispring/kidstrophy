@@ -1,14 +1,14 @@
 import * as _ from 'lodash';
 
 export enum Category {
-    'Maedchen Piccolo (3-6)',
-    'Knaben Piccolo (3-6)',
-    'Maedchen I (7-8)',
-    'Knaben I (7-8)',
-    'Maedchen II (9-10)',
-    'Knaben II (9-10)',
-    'Maedchen III (11-13)',
-    'Knaben III (11-13)'
+    'Piccolo Maedchen (3-6)',
+    'Piccolo Knaben (3-6)',
+    'Mini Maedchen (7-8)',
+    'Mini Knaben (7-8)',
+    'Midi Maedchen (9-10)',
+    'Midi Knaben (9-10)',
+    'Maxi Maedchen (11-13)',
+    'Maxi Knaben (11-13)'
 }
 
 export const categoryValues = _.keysIn(Category).filter(k=> k==0 || +k);
