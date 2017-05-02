@@ -2,14 +2,10 @@ import * as mongoose from 'mongoose';
 import * as Promise from 'bluebird';
 import * as _ from 'lodash';
 
-import '../models/kid';
-
 const Kid = mongoose.model('Kid');
-mongoose.Promise = Promise;
-import { Category } from '../models/category';
 
-const currentYear = new Date().getFullYear();
-const categoryIndexes = _.keysIn(Category).filter(k=> k==0 || +k);
+import '../models/kid';
+import { Category, currentYear , categoryValues} from '../config';
 
 export function ranking(req, res, next) {
     return Promise.resolve()
@@ -47,7 +43,7 @@ export function ranking(req, res, next) {
 
             const categories = _.groupBy(ranks, 'category');
 
-            const topResultsPerCategory = categoryIndexes.map(category => {
+            const topResultsPerCategory = categoryValues.map(category => {
 
                 const ranksPerCategory = categories[category];
 
@@ -72,7 +68,7 @@ export function ranking(req, res, next) {
 
             console.log('topResultsPerCategory', topResultsPerCategory);
 
-            const resultsPerCategory = categoryIndexes.map(category => {
+            const resultsPerCategory = categoryValues.map(category => {
 
                 const ranksPerCategory = categories[category];
                 if(!ranksPerCategory) return {};

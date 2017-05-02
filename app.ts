@@ -5,17 +5,20 @@ import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as sassMiddleware from 'node-sass-middleware';
-import * as mongoose from 'mongoose';
 import * as http from 'http';
+import * as Promise from 'bluebird';
+
+import mongoose = require('mongoose');
 
 import { router } from './router';
+import { dbConnection } from './config';
 
 export const app = express();
 
-mongoose.connect('mongodb://localhost:27017/kidstrophy');
+mongoose.connect(dbConnection);
+mongoose.Promise = Promise;
 
 const debug = require('debug')('kidstrophy:server');
-
 
 /**
  * Get port from environment and store in Express.

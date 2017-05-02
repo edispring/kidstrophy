@@ -1,5 +1,11 @@
 extends layout
 
+mixin result(rank,i)
+  td
+    strong(class= rank['points' + i] === 1000 ? 'text-success' : '')= rank['points' + i]
+    | &nbsp;
+    em= rank['stage' + i]
+
 block content
   .container
     if error
@@ -8,14 +14,11 @@ block content
         span &nbsp;&nbsp;
         span= error
 
-    .row
-      h2= title
-
     .container
       if resultsPerCategory
         each category in categories
           if parseInt(category, 10) >= 0
-            h2= categories[category]
+            h4= categories[category]
             table.table
               tr
                 th Rank
@@ -33,23 +36,10 @@ block content
                     td= (i + 1)
                     td
                       a(href='/' +rank.id)= rank.firstName + ' ' + rank.lastName
-                    td= rank.points1
-                      | &nbsp;
-                      strong= rank.stage1
-                    td= rank.points2
-                      | &nbsp;
-                      strong= rank.stage2
-                    td= rank.points3
-                      | &nbsp;
-                      strong= rank.stage3
-                    td= rank.points4
-                      | &nbsp;  
-                      strong= rank.stage4
-                    td= rank.points5
-                      | &nbsp;  
-                      strong= rank.stage5
-                    td= rank.points6
-                      | &nbsp;  
-                      strong= rank.stage6
-                    td= rank.points
-
+                    +result(rank, 1)
+                    +result(rank, 2)
+                    +result(rank, 3)
+                    +result(rank, 4)
+                    +result(rank, 5)
+                    +result(rank, 6)
+                    +result(rank, '')

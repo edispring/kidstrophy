@@ -3,13 +3,9 @@ import * as Promise from 'bluebird';
 import * as _ from 'lodash';
 
 import '../models/kid';
-import { Category } from '../models/category';
+import { Category, currentYear, seconds, minutes } from '../config';
 
 const Kid = mongoose.model('Kid');
-mongoose.Promise = Promise;
-
-const currentYear = new Date().getFullYear();
-
 
 export function index(req, res, next) {
 
@@ -21,6 +17,6 @@ export function index(req, res, next) {
     })
     .then(kid => {
       console.log("kid", kid);
-      res.render('index', { title: 'Kidstrophy ' + currentYear, categories: Category, kid: kid || { runs: [{}, {}] }, minutes: m => m ? Math.floor(m / 60) : '', seconds: m => m ? (m % 60) : '' });
+      res.render('index', { title: 'Kidstrophy ' + currentYear, categories: Category, kid: kid || { runs: [{}, {}] }, minutes: minutes, seconds: seconds });
     });
 }
