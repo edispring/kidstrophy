@@ -18,6 +18,13 @@ export function createRun(req, res, next) {
       kid.lastName = result.lastName;
       kid.category = +result.category;
 
+      if((!kid.firstName || !kid.lastName ) && !req.body.id)
+        throw new Error("Vorname und Nachname sind pflicht.");
+
+      return result;
+    })
+    .then(result=>{
+
       const runs = _.keysIn(result).reduce((p, c, i) => {
         const [stage, run, metric] = c.split('-');
 

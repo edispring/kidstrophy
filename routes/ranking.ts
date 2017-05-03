@@ -5,13 +5,13 @@ import * as _ from 'lodash';
 const Kid = mongoose.model('Kid');
 
 import '../models/kid';
-import { Category, currentYear , categoryValues} from '../config';
+import { Category, currentYear, categoryValues } from '../config';
 
 export function ranking(req, res, next) {
     return Promise.resolve()
         .then(() => Kid.find())
         .then(list => {
-            //console.log('list', list);
+            console.log('list', list);
 
             const ranks = list.reduce((p, c, i) => {
 
@@ -29,12 +29,12 @@ export function ranking(req, res, next) {
                 rank.category = c.category;
                 rank.year = currentYear;
 
-                rank.stage1 = _.minBy(currentRuns.filter(x => x.stage1 > 0), 'stage1').stage1 || 1000;
-                rank.stage2 = _.maxBy(currentRuns.filter(x => x.stage2 > 0), 'stage2').stage2;
-                rank.stage3 = _.minBy(currentRuns.filter(x => x.stage3 > 0), 'stage3').stage3 || 1000;
-                rank.stage4 = _.maxBy(currentRuns.filter(x => x.stage4 > 0), 'stage4').stage4;
-                rank.stage5 = _.minBy(currentRuns.filter(x => x.stage5 > 0), 'stage5').stage5 || 1000;
-                rank.stage6 = _.minBy(currentRuns.filter(x => x.stage6 > 0), 'stage6').stage6 || 1000;
+                rank.stage1 = _.minBy(currentRuns.filter(x => x.stage1 > 0).map(x => x.stage1)) || 1000;
+                rank.stage2 = _.maxBy(currentRuns.filter(x => x.stage2 > 0).map(x => x.stage2));
+                rank.stage3 = _.minBy(currentRuns.filter(x => x.stage3 > 0).map(x => x.stage3)) || 1000;
+                rank.stage4 = _.maxBy(currentRuns.filter(x => x.stage4 > 0).map(x => x.stage4));
+                rank.stage5 = _.minBy(currentRuns.filter(x => x.stage5 > 0).map(x => x.stage5)) || 1000;
+                rank.stage6 = _.minBy(currentRuns.filter(x => x.stage6 > 0).map(x => x.stage6)) || 1000;
 
                 return p;
             }, []);
@@ -47,7 +47,7 @@ export function ranking(req, res, next) {
 
                 const ranksPerCategory = categories[category];
 
-                if(!ranksPerCategory) return {};
+                if (!ranksPerCategory) return {};
 
                 const topResults = ranksPerCategory.reduce((p, c, i) => {
 
@@ -71,7 +71,7 @@ export function ranking(req, res, next) {
             const resultsPerCategory = categoryValues.map(category => {
 
                 const ranksPerCategory = categories[category];
-                if(!ranksPerCategory) return {};
+                if (!ranksPerCategory) return {};
 
                 const topResult = _.find(topResultsPerCategory, c => c.category === category);
 
