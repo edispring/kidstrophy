@@ -11,7 +11,7 @@ export function ranking(req, res, next) {
     return Promise.resolve()
         .then(() => Kid.find())
         .then(list => {
-            console.log('list', list);
+            // console.log('list', list);
 
             const ranks = list.reduce((p, c, i) => {
 
@@ -30,9 +30,9 @@ export function ranking(req, res, next) {
                 rank.year = currentYear;
 
                 rank.stage1 = _.minBy(currentRuns.filter(x => x.stage1 > 0).map(x => x.stage1)) || 1000;
-                rank.stage2 = _.maxBy(currentRuns.filter(x => x.stage2 > 0).map(x => x.stage2));
+                rank.stage2 = _.maxBy(currentRuns.filter(x => x.stage2 > 0).map(x => x.stage2)) || 0;
                 rank.stage3 = _.minBy(currentRuns.filter(x => x.stage3 > 0).map(x => x.stage3)) || 1000;
-                rank.stage4 = _.maxBy(currentRuns.filter(x => x.stage4 > 0).map(x => x.stage4));
+                rank.stage4 = _.maxBy(currentRuns.filter(x => x.stage4 > 0).map(x => x.stage4)) || 0;
                 rank.stage5 = _.minBy(currentRuns.filter(x => x.stage5 > 0).map(x => x.stage5)) || 1000;
                 rank.stage6 = _.minBy(currentRuns.filter(x => x.stage6 > 0).map(x => x.stage6)) || 1000;
 
