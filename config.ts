@@ -11,9 +11,8 @@ export enum Category {
     'Maxi Knaben (11-13)'
 }
 
-export const categoryValues = _.keysIn(Category).filter(k=> k==0 || +k);
-
-export const currentYear = 2016; // new Date().getFullYear();
+export const categoryValues = _.keysIn(Category).filter(k => k == 0 || +k);
+export const currentYear = new Date().getFullYear();
 
 export const dbConnection = 'mongodb://kidstrophy:sVNcMN2HNGh1RHyTKsU0@ds029381.mlab.com:29381/kidstrophy';
 
