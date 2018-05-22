@@ -23,12 +23,11 @@ block content
               tr
                 th Rank
                 th Name
-                th 1. Surfboard
-                th 2. Bowling
-                th 3. Parcours
-                th 4. Weitwurf
-                th 5. Sprint
-                th 6. Korbball
+                th Triff ds Häfeli
+                th Hüpf &amp; Run
+                th Parcours
+                th Wasserbiathlon
+                th Gummisteifelrennen
                 th Points Overall
               if resultsPerCategory[+category]
                 each rank, i in resultsPerCategory[+category]
@@ -41,5 +40,4 @@ block content
                     +result(rank, 3)
                     +result(rank, 4)
                     +result(rank, 5)
-                    +result(rank, 6)
                     +result(rank, '')

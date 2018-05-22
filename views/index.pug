@@ -44,28 +44,24 @@ block content
           .col-sm-4.col-xs-4
             h4 2. Lauf
         .form-group.row.stage
-          label.col-sm-4  1. Surfboard (min/sec)
-          +time(kid.runs,'stage1')
+          label.col-sm-4  Triff ds Häfeli (p)
+          +points(kid.runs,'stage1')
 
         .form-group.row.stage
-          label.col-sm-4  2. Bowling (p)
-          +points(kid.runs,'stage2')
+          label.col-sm-4  Hüpf &amp; Run (min/sec)
+          +time(kid.runs,'stage2')
 
         .form-group.row.stage
-          label.col-sm-4  3. Parcours (min/sec)
+          label.col-sm-4  Parcours (min/sec)
           +time(kid.runs,'stage3')
 
         .form-group.row.stage
-          label.col-sm-4  4. Weitwurf (p)
-          +points(kid.runs,'stage4')
+          label.col-sm-4  Wasserbiathlon (min/sec)
+          +time(kid.runs,'stage4')
 
         .form-group.row.stage
-          label.col-sm-4  5. Sprint (min/sec)
-          +time(kid.runs,'stage5')
-
-        .form-group.row.stage
-          label.col-sm-4  6. Korbball (min/sec)
-          +time(kid.runs,'stage6')
+          label.col-sm-4  Gummistiefelrennen (p)
+          +points(kid.runs,'stage5')
 
         .form-group.row
           .col-lg-12
