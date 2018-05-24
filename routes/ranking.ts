@@ -42,11 +42,11 @@ export function calculateRanks(list) {
         rank.category = c.category;
         rank.year = currentYear;
 
-        rank.stage1 = _.minBy(currentRuns.filter(x => x.stage1 > 0).map(x => x.stage1)) || 1000;
-        rank.stage2 = _.maxBy(currentRuns.filter(x => x.stage2 > 0).map(x => x.stage2)) || 0;
+        rank.stage1 = _.maxBy(currentRuns.filter(x => x.stage1 > 0).map(x => x.stage1)) || 1000;
+        rank.stage2 = _.minBy(currentRuns.filter(x => x.stage2 > 0).map(x => x.stage2)) || 0;
         rank.stage3 = _.minBy(currentRuns.filter(x => x.stage3 > 0).map(x => x.stage3)) || 1000;
-        rank.stage4 = _.maxBy(currentRuns.filter(x => x.stage4 > 0).map(x => x.stage4)) || 0;
-        rank.stage5 = _.minBy(currentRuns.filter(x => x.stage5 > 0).map(x => x.stage5)) || 1000;
+        rank.stage4 = _.minBy(currentRuns.filter(x => x.stage4 > 0).map(x => x.stage4)) || 0;
+        rank.stage5 = _.maxBy(currentRuns.filter(x => x.stage5 > 0).map(x => x.stage5)) || 1000;
         rank.stage6 = _.minBy(currentRuns.filter(x => x.stage6 > 0).map(x => x.stage6)) || 1000;
 
         return p;
@@ -66,11 +66,11 @@ export function calculateRanks(list) {
 
             p.category = category;
 
-            p.stage1 = _.min([+c.stage1, +p.stage1]);
-            p.stage2 = _.max([+c.stage2, +p.stage2]);
+            p.stage1 = _.max([+c.stage1, +p.stage1]);
+            p.stage2 = _.min([+c.stage2, +p.stage2]);
             p.stage3 = _.min([+c.stage3, +p.stage3]);
-            p.stage4 = _.max([+c.stage4, +p.stage4]);
-            p.stage5 = _.min([+c.stage5, +p.stage5]);
+            p.stage4 = _.min([+c.stage4, +p.stage4]);
+            p.stage5 = _.max([+c.stage5, +p.stage5]);
             p.stage6 = _.min([+c.stage6, +p.stage6]);
 
             return p;
@@ -90,11 +90,11 @@ export function calculateRanks(list) {
 
         const results = ranksPerCategory.map(r => {
 
-            r.points1 = Math.floor(topResult.stage1 / r.stage1 * 1000);
-            r.points2 = Math.floor(r.stage2 / topResult.stage2 * 1000);
+            r.points1 = Math.floor(r.stage1 / topResult.stage1 * 1000);
+            r.points2 = Math.floor(topResult.stage2 / r.stage2 * 1000);
             r.points3 = Math.floor(topResult.stage3 / r.stage3 * 1000);
-            r.points4 = Math.floor(r.stage4 / topResult.stage4 * 1000);
-            r.points5 = Math.floor(topResult.stage5 / r.stage5 * 1000);
+            r.points4 = Math.floor(topResult.stage4 / r.stage4 * 1000);
+            r.points5 = Math.floor(r.stage5 / topResult.stage5 * 1000);
             r.points6 = Math.floor(topResult.stage6 / r.stage6 * 1000);
 
             r.points = r.points1 + r.points2 + r.points3 + r.points4 + r.points5 + r.points6;
