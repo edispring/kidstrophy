@@ -16,10 +16,11 @@ mixin points(runs, stage)
   
 block content
     if error
-      .alert.alert-danger
-        strong Error
-        span &nbsp;&nbsp;
-        span= error
+        .container
+            .alert.alert-danger
+                strong Error
+                span &nbsp;&nbsp;
+                span= error
 
     .container
       form.col-lg-10#runs-form(method="POST", action="create-run")

@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import '../models/kid';
 
 const Kid = mongoose.model('Kid');
-import { Category, currentYear, minutes, seconds } from '../config';
+import { Category, currentYear, minutes, seconds, millis } from '../config';
 
 export function createRun(req, res, next) {
     const kid: any = { runs: [{}, {}] };
@@ -60,7 +60,7 @@ export function createRun(req, res, next) {
         })
         .catch((e) => {
             console.error('create-run', e);
-            res.render('index', { title: 'Kidstrophy ' + currentYear, error: '' + e, categories: Category, kid: kid, minutes: minutes, seconds: seconds });
+            res.render('index', { title: 'Kidstrophy ' + currentYear, error: '' + e, categories: Category, kid: kid, minutes: minutes, seconds: seconds, millis });
         })
         .finally(() => {
             //next();

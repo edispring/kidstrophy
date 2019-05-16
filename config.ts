@@ -19,4 +19,4 @@ export const dbConnection = 'mongodb://kidstrophy:sVNcMN2HNGh1RHyTKsU0@ds029381.
 
 export const minutes = m => m ? Math.floor(m / 60) : '';
 export const seconds = m => m ? Math.floor(m % 60) : 0;
-export const millis = m => m ? Math.floor((m % 1) * 100) : 0;
+export const millis = m => m ? ('' + Math.floor((m % 1) * 100)).padStart(2, '0') : 0;
