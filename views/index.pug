@@ -3,8 +3,10 @@ extends layout
 mixin time(runs, stage)
   each run, i in runs
     .col-sm-4.col-xs-4.input-group
-      input.form-control(type='number', name= stage + '-' + i + '-min', value=minutes(run[stage]) )
-      input.form-control(type='number', step="0.1", name= stage + '-' + i + '-sec', value=seconds(run[stage]) )
+      input.form-control(type='number', max=5, name= stage + '-' + i + '-min', value=minutes(run[stage]) )
+      input.form-control(type='number', max=60, name= stage + '-' + i + '-sec', value=seconds(run[stage]) )
+      p(style="font-size:40px") ,
+      input.form-control(type='number', max=99, name= stage + '-' + i + '-ms', value=millis(run[stage]) )
     .col-xs-1
 
 mixin points(runs, stage)
@@ -13,7 +15,6 @@ mixin points(runs, stage)
       input.form-control(type='number', name= stage + '-' + i + '-points' , value= run[stage] ? run[stage] : '')
   
 block content
-  .container
     if error
       .alert.alert-danger
         strong Error
@@ -21,7 +22,7 @@ block content
         span= error
 
     .container
-      form.col-lg-6#runs-form(method="POST", action="create-run")
+      form.col-lg-10#runs-form(method="POST", action="create-run")
         .form-group.row.name
           label.col-sm-4 Name
           .col-sm-4
@@ -44,23 +45,23 @@ block content
           .col-sm-4.col-xs-4
             h4 2. Lauf
         .form-group.row.stage
-          label.col-sm-4  Triff ds Häfeli (p)
-          +points(kid.runs,'stage1')
+          label.col-sm-4  Parcours (min/sec)
+          +time(kid.runs,'stage1')
 
         .form-group.row.stage
-          label.col-sm-4  Hüpf &amp; Run (min/sec)
+          label.col-sm-4  Chäreli-Rennä (min/sec)
           +time(kid.runs,'stage2')
 
         .form-group.row.stage
-          label.col-sm-4  Parcours (min/sec)
+          label.col-sm-4  Sackhüpfä (min/sec)
           +time(kid.runs,'stage3')
 
         .form-group.row.stage
-          label.col-sm-4  Wasserbiathlon (min/sec)
+          label.col-sm-4  Kinball (min/sec)
           +time(kid.runs,'stage4')
 
         .form-group.row.stage
-          label.col-sm-4  Gummistiefelrennen (p)
+          label.col-sm-4  Torwand (p)
           +points(kid.runs,'stage5')
 
         .form-group.row
