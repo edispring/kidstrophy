@@ -1,0 +1,18 @@
+a {
+  color: #00B7FF; }
+
+.navbar-nav {
+  display: inline-block; }
+
+.nav-link {
+  display: inline-block;
+  margin: 10px; }
+
+.input-group {
+  max-height: 50px; }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}

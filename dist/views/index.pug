@@ -1,0 +1,72 @@
+extends layout
+
+mixin time(runs, stage)
+  each run, i in runs
+    .col-sm-4.col-xs-4.input-group
+      input.form-control(type='number', max=5, name= stage + '-' + i + '-min', value=minutes(run[stage]) )
+      input.form-control(type='number', max=60, name= stage + '-' + i + '-sec', value=seconds(run[stage]) )
+      p(style="font-size:40px") ,
+      input.form-control(type='number', max=99, name= stage + '-' + i + '-ms', value=millis(run[stage]) )
+    .col-xs-1
+
+mixin points(runs, stage)
+  each run, i in runs
+    .col-sm-4.col-xs-4
+      input.form-control(type='number', name= stage + '-' + i + '-points' , value= run[stage] ? run[stage] : '')
+  
+block content
+    if error
+        .container
+            .alert.alert-danger
+                strong Error
+                span &nbsp;&nbsp;
+                span= error
+
+    .container
+      form.col-lg-10#runs-form(method="POST", action="create-run")
+        .form-group.row.name
+          label.col-sm-4 Name
+          .col-sm-4
+            input.form-control#first-name(type='text', name='firstName', required="true", value= kid.firstName)
+          .col-sm-4
+            input.form-control#last-name(type='text', name='lastName', required="true", value= kid.lastName)
+        
+        .form-group.row.category
+          label.col-sm-4  Kategorie
+          .col-sm-8
+            select.form-control#category(name='category')
+              options
+                each cat in categories
+                  if parseInt(cat, 10) >= 0
+                    option(value=cat, selected=(kid.category === cat))= categories[cat]
+        hr
+        .form-group.row
+          .offset-md-4.col-sm-4.col-xs-4
+            h4 1. Lauf
+          .col-sm-4.col-xs-4
+            h4 2. Lauf
+        .form-group.row.stage
+          label.col-sm-4  Parcours (min/sec)
+          +time(kid.runs,'stage1')
+
+        .form-group.row.stage
+          label.col-sm-4  Chäreli-Rennä (min/sec)
+          +time(kid.runs,'stage2')
+
+        .form-group.row.stage
+          label.col-sm-4  Sackhüpfä (min/sec)
+          +time(kid.runs,'stage3')
+
+        .form-group.row.stage
+          label.col-sm-4  Kinball (min/sec)
+          +time(kid.runs,'stage4')
+
+        .form-group.row.stage
+          label.col-sm-4  Torwand (p)
+          +points(kid.runs,'stage5')
+
+        .form-group.row
+          .col-lg-12
+            input(type='hidden', value=kid._id, name='id')
+            a.btn.btn-secondary.float-left(href="/") Cancel
+            button.btn.btn-primary.float-right(type="submit") Speichern

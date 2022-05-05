@@ -1,0 +1,18 @@
+doctype html
+html(lang="de")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+    title= title
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header.navbar
+        .navbar-brand.mb-0= title
+          .navbar-nav
+            a.nav-item.nav-link(href="/") Erfassen
+            a.nav-item.nav-link(href="/ranking") Rangliste
+            a.nav-item.nav-link(href="/export") Export
+
+    block content
