@@ -1,26 +1,19 @@
 import * as express from "express";
 import * as path from "path";
-import * as favicon from "serve-favicon";
 import * as logger from "morgan";
 import * as cookieParser from "cookie-parser";
 import * as bodyParser from "body-parser";
-import * as http from "http";
 import * as Promise from "bluebird";
 
 import mongoose = require("mongoose");
 
 import { router } from "./router";
 import { dbConnection } from "./config";
-const serverless = require("serverless-http");
 
-const app = express();
+export const app = express();
 
 mongoose.connect(dbConnection).then(console.log).catch(console.error);
 mongoose.Promise = Promise;
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -36,8 +29,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 router(app);
-
-app.use("/.netlify/functions/server", router); // path must route to lambda
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -56,6 +47,3 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-
-module.exports = app;
-module.exports.handler = serverless(app);

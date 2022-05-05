@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./dist",
-    "build": "tsc -p . && cpx 'views/*' ./dist/views --clean && cpx './public/**/*' ./dist/public --clean && cpx index.html dist"
+    "build": "tsc -p . && cpx 'views/*' ./dist/views --clean && cpx './public/**/*' ./dist/public --clean"
   },
   "dependencies": {
     "@types/express": "^4.17.13",
@@ -21,7 +21,6 @@
     "morgan": "~1.8.1",
     "pug": "^3.0.2",
     "serve-favicon": "~2.4.2",
-    "serverless-http": "^3.0.1",
     "typescript": "4.6.4"
   },
   "devDependencies": {

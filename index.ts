@@ -1,3 +1,6 @@
+import { app } from "./app";
+import * as http from "http";
+
 const debug = require("debug")("kidstrophy:server");
 
 /**
@@ -5,11 +8,15 @@ const debug = require("debug")("kidstrophy:server");
  */
 
 const port = normalizePort(process.env.PORT || "3000");
-const app = require("./app");
-app.set("port", port);
 
-app.listen(port);
-app.on("error", onError);
+const server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on("error", onError);
 
 /**
  * Normalize a port into a number, string, or false.
