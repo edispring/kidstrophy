@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./app",
+    "start": "node ./dist/app",
     "build": "tsc -p ."
   },
   "dependencies": {
@@ -27,7 +27,7 @@
     "tslint": "^5.1.0"
   },
   "engines": {
-    "node": ">=8.0.0",
+    "node": ">=12.0.0",
     "npm": ">=6.0.0"
   }
 }
